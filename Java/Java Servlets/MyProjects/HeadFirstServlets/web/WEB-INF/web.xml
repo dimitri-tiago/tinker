@@ -4,8 +4,16 @@
         <servlet-name>Ch1Servlet</servlet-name>
         <servlet-class>ch1.Ch1Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Ch2Servlet</servlet-name>
+        <servlet-class>ch2.Ch2Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Ch1Servlet</servlet-name>
         <url-pattern>/Ch1Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Ch2Servlet</servlet-name>
+        <url-pattern>/Ch2Servlet</url-pattern>
     </servlet-mapping>
 </web-app>
