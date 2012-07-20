@@ -43,32 +43,66 @@ public class TaskManager
         TaskComposite newList = new TaskComposite();
         newList.setName(name);
         newList.setDescription(description);
+ 
+        // attempt to retrieve parent task list ...
+        TaskComposite parentList = getList(list);
+        if ( (parentList != null) && (!parentList.getName().equals(newList.getName())) )
+        {
+            // ... desired parent list found, 
+            // and new list name != parent list name,
+            // add child list to parent list
+            parentList.add(newList);
+        }
+    }
+    
+    /**
+     * This method adds a task to a list. If the list name is not passed the 
+     * task is added to the master list.
+     * @param name new task name
+     * @param description new task description
+     * @param list task list name
+     */
+    public void addTask(String name, String description, String list)
+    {
+        TaskItem taskItem = new TaskItem();
+        taskItem.setName(name);
+        taskItem.setDescription(description);
         
-        // retrieve parent task list
+        // attempt to retrieve task list
+        TaskComposite taskList = getList(list);
+        if (taskList != null)
+        {
+            // ... list found, add task to list.
+            taskList.add(taskItem);
+        }
+    }
+    
+    /**
+     * This method returns a task list that matches the list name we are 
+     * interested in.
+     * @param list task list name
+     * @return task list
+     */
+    public TaskComposite getList(String list)
+    {
+        // retrieve task list
         Iterator taskIterator = tasks.createIterator();
         while (taskIterator.hasNext())
         {
             TaskComponent taskComponent = (TaskComponent) taskIterator.next();
             if (taskComponent instanceof TaskComposite)
             {
-                // if task list has been found...
-                if ( (taskComponent.getName().equals(list)) && (!newList.getName().equals(list)) )
+                // if a task list has been found...
+                if (taskComponent.getName().equals(list))
                 {
-                    // ... and desired parent list found, 
-                    // and new list name != parent list name,
-                    // add child list to parent list
-                    taskComponent.add(newList);
+                    // ... and it is the one we want,
+                    // return it 
+                    return (TaskComposite) taskComponent;
                 }
             }
         }
-    }
-    
-    public void addTask(String name, String description, String listName)
-    {
-        TaskItem taskItem = new TaskItem();
-        taskItem.setName(name);
-        taskItem.setDescription(description);
         
-        //get list and add task to list
+        // task list not found
+        return null;
     }
 }
