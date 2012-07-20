@@ -19,6 +19,7 @@ public class TaskComposite extends TaskComponent
     {
         super();
         taskComponents = new ArrayList<TaskComponent>();
+        iterator = null;
     }
   
     @Override

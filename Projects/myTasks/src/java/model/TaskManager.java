@@ -7,7 +7,7 @@ package model;
 import java.util.Iterator;
 
 //TODO: need to consider duplicate child list names policy (or use ids?)
-//TODO: need to consider duplicate task item names policu (or use ids?)
+//TODO: need to consider duplicate task item names policy (or use ids?)
 
 /**
  * @author dimitri.tiago
