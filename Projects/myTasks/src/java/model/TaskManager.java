@@ -49,11 +49,16 @@ public class TaskManager
         while (taskIterator.hasNext())
         {
             TaskComponent taskComponent = (TaskComponent) taskIterator.next();
-            if ( (taskComponent.getName().equals(list)) && (!newList.getName().equals(list)) )
+            if (taskComponent instanceof TaskComposite)
             {
-                // if parent list found, and new list name != parent list name
-                // add child list to parent list
-                taskComponent.add(newList);
+                // if task list has been found...
+                if ( (taskComponent.getName().equals(list)) && (!newList.getName().equals(list)) )
+                {
+                    // ... and desired parent list found, 
+                    // and new list name != parent list name,
+                    // add child list to parent list
+                    taskComponent.add(newList);
+                }
             }
         }
     }
