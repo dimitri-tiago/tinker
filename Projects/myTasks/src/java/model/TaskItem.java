@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.Iterator;
+
 /**
  * @author dimitri.tiago
  */
@@ -18,5 +20,11 @@ public class TaskItem extends TaskComponent
     public void print()
     {
         System.out.printf("%s\n", getName());
+    }
+    
+    @Override
+    public Iterator createIterator()
+    {
+        return new NullIterator();
     }
 }

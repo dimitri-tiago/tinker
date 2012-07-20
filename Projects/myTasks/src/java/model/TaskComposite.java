@@ -5,12 +5,14 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * @author dimitri.tiago
  */
 public class TaskComposite extends TaskComponent
 {
+  private Iterator iterator;
   private ArrayList<TaskComponent> taskComponents;
   
     public TaskComposite()
@@ -46,5 +48,16 @@ public class TaskComposite extends TaskComponent
         {
             tc.print();
         }
+    }
+
+    @Override
+    public Iterator createIterator() 
+    {
+       if (iterator == null)
+       {
+           iterator = new TaskCompositeIterator(taskComponents.iterator());
+       }
+       
+       return iterator;
     }
 }

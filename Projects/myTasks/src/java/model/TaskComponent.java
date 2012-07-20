@@ -4,6 +4,8 @@
 */
 package model;
 
+import java.util.Iterator;
+
 /**
  * @author dimitri.tiago
  */
@@ -57,4 +59,6 @@ public abstract class TaskComponent
     {
         throw new UnsupportedOperationException();
     }
+    
+    public abstract Iterator createIterator();
 }
