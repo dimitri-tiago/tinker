@@ -6,6 +6,9 @@ package model;
 
 import java.util.Iterator;
 
+//TODO: need to consider duplicate child list names policy (or use ids?)
+//TODO: need to consider duplicate task item names policu (or use ids?)
+
 /**
  * @author dimitri.tiago
  */
@@ -44,15 +47,7 @@ public class TaskManager
         newList.setName(name);
         newList.setDescription(description);
  
-        // attempt to retrieve parent task list ...
-        TaskComposite parentList = getList(list);
-        if ( (parentList != null) && (!parentList.getName().equals(newList.getName())) )
-        {
-            // ... desired parent list found, 
-            // and new list name != parent list name,
-            // add child list to parent list
-            parentList.add(newList);
-        }
+        addTaskComponent(newList, list);
     }
     
     /**
@@ -68,12 +63,19 @@ public class TaskManager
         taskItem.setName(name);
         taskItem.setDescription(description);
         
-        // attempt to retrieve task list
-        TaskComposite taskList = getList(list);
-        if (taskList != null)
+        addTaskComponent(taskItem, list);
+    }
+    
+    private void addTaskComponent(TaskComponent taskComponent, String list)
+    {
+        // attempt to retrieve parent task list ...
+        TaskComposite parentList = getList(list);
+        if ( (parentList != null) && (!parentList.getName().equals(taskComponent.getName())) )
         {
-            // ... list found, add task to list.
-            taskList.add(taskItem);
+            // ... desired parent list found, 
+            // and new list name != parent list name,
+            // add child task component (i.e. task list or item) to parent list
+            parentList.add(taskComponent);
         }
     }
     
