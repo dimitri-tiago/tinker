@@ -68,14 +68,23 @@ public class TaskManager
     
     private void addTaskComponent(TaskComponent taskComponent, String list)
     {
-        // attempt to retrieve parent task list ...
-        TaskComposite parentList = getList(list);
-        if ( (parentList != null) && (!parentList.getName().equals(taskComponent.getName())) )
+        if (list.equals("master"))
         {
-            // ... desired parent list found, 
-            // and new list name != parent list name,
-            // add child task component (i.e. task list or item) to parent list
-            parentList.add(taskComponent);
+            // if list is "master" ... add component to master list
+            // TODO: handle case when task component has duplicate name
+            tasks.add(taskComponent);
+        }
+        else
+        {
+            // attempt to retrieve parent task list ...
+            TaskComposite parentList = getList(list);
+            if ( (parentList != null) && (!parentList.getName().equals(taskComponent.getName())) )
+            {
+                // ... desired parent list found, 
+                // and new list name != parent list name,
+                // add child task component (i.e. task list or item) to parent list
+                parentList.add(taskComponent);
+            }
         }
     }
     
