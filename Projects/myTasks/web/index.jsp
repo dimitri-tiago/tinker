@@ -9,13 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome to myTasks!</title>
+        <title>Dimitri Tiago {myTasks}</title>
     </head>
     <body>
-        <h1>myTasks</h1>
+        <h1>Dimitri Tiago {myTasks}</h1>
         
         <form id = "addTaskList" method = "GET" action = "TaskController">
-            <h2>Add Task List:</h2>
+            <h3>Add list:</h3>
             
             <p>
                 <label id = "listNameLabel" for="listName">List name: </label>
@@ -23,15 +23,19 @@
             </p>
             <p>
                 <label id = "listDescriptionLabel" for="listDescription">Description: </label>
-                <input type = "text" id = "listDescription" name = "listDescription"  value = "" />
+                <textarea id="listDescription" name="listDescription" rows="3" cols="50" ></textarea>
             </p>
             <p>
-                <input type = "submit" id = "submit" name = "submit"  value = "Add Task List" />
+                <label id = "parentListLabel" for="parentList">Parent list: </label>
+                <input type = "text" id = "parentList" name = "parentList"  value = "" />
+            </p>
+            <p>
+                <input type = "submit" id = "submit" name = "submit"  value = "Add List" />
             </p>
         </form>
         
         <form id = "addTask" method = "GET" action = "TaskController">
-            <h2>Add Task:</h2>
+            <h3>Add task:</h3>
             
             <p>
                 <label id = "taskNameLabel" for="taskName">Task name: </label>
@@ -39,7 +43,7 @@
             </p>
             <p>
                 <label id = "taskDescriptionLabel" for="taskDescription">Description: </label>
-                <input type = "text" id = "taskDescription" name = "taskDescription"  value = "" />
+                <textarea id="taskDescription" name="taskDescription" rows="3" cols="50" ></textarea>
             </p>
             <p>
                 <label id = "taskListLabel" for="taskList">Task list: </label>

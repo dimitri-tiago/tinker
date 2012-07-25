@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 //TODO: need to consider duplicate child list names policy (or use ids?)
@@ -18,9 +19,16 @@ public class TaskManager
     
     public TaskManager()
     {
+        // instantiate master list to hold all tasks and lists.
         tasks = new TaskComposite();
         tasks.setName("master");
         tasks.setDescription("master task list.");
+        
+        // add default list to master task list
+        TaskComposite generalTasks = new TaskComposite();
+        generalTasks.setName("general");
+        generalTasks.setDescription("General tasks.");
+        tasks.add(generalTasks);
     }
     
     /**
@@ -40,19 +48,18 @@ public class TaskManager
      * @param description new task list description
      * @param list parent task list name
      */
-    public void addList(String name, String description, String list)
+    public void addList(String name, String description, String parentList)
     {
-        // create child task list
-        TaskComposite newList = new TaskComposite();
-        newList.setName(name);
-        newList.setDescription(description);
+        TaskComposite taskList = new TaskComposite();
+        taskList.setName(name);
+        taskList.setDescription(description);
  
-        addTaskComponent(newList, list);
+        addTaskComponent(taskList, (parentList.equals("")) ? "master" : parentList);
     }
     
     /**
      * This method adds a task to a list. If the list name is not passed the 
-     * task is added to the master list.
+     * task is added to the general list.
      * @param name new task name
      * @param description new task description
      * @param list task list name
@@ -63,7 +70,7 @@ public class TaskManager
         taskItem.setName(name);
         taskItem.setDescription(description);
         
-        addTaskComponent(taskItem, list);
+        addTaskComponent(taskItem, (list.equals("")) ? "general" : list);
     }
     
     private void addTaskComponent(TaskComponent taskComponent, String list)
@@ -115,5 +122,19 @@ public class TaskManager
         
         // task list not found
         return null;
+    }
+    
+    public Iterator getTasks()
+    {
+        ArrayList<String> allTasks = new ArrayList<String>();
+    
+        Iterator taskIterator = tasks.createIterator();
+        while (taskIterator.hasNext())
+        {
+            TaskComponent taskComponent = (TaskComponent) taskIterator.next();
+            allTasks.add(taskComponent.getName());
+        }
+        
+        return allTasks.iterator();
     }
 }

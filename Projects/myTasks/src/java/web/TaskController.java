@@ -6,6 +6,7 @@ package web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,13 +43,14 @@ public class TaskController extends HttpServlet
         TaskManager taskManager = (TaskManager) getServletContext().getAttribute("taskManager");
         String operation = (String) request.getParameter("submit");
 
-        if (operation.equals("Add Task List"))
+        if (operation.equals("Add List"))
         {
             // add task list to master list
             String listName         = (String) request.getParameter("listName");
             String listDescription  = (String) request.getParameter("listDescription");
+            String parentList       = (String) request.getParameter("parentList");
             
-            taskManager.addList(listName, listDescription);
+            taskManager.addList(listName, listDescription, parentList);
         }
         else if (operation.equals("Add Task"))
         {
@@ -57,7 +59,7 @@ public class TaskController extends HttpServlet
             String taskDescription  = (String) request.getParameter("taskDescription");
             String taskList         = (String) request.getParameter("taskList");
             
-            taskManager.addTask(taskName, taskDescription, taskList.equals("") ? "master" : taskList);
+            taskManager.addTask(taskName, taskDescription, taskList);
         }
 
         // prepare response object
@@ -67,11 +69,16 @@ public class TaskController extends HttpServlet
         {
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet TaskController</title>");            
+            out.println("<title>{myTasks}</title>");            
             out.println("</head>");
             out.println("<body>");
+            out.println("<h1>{myTasks}</h1>");
             
-            out.println("<h1>Servlet TaskController at " + request.getContextPath() + "</h1>");
+            Iterator allTasks = taskManager.getTasks();
+            while (allTasks.hasNext())
+            {
+                out.println("<p>" + allTasks.next() + "</p>");
+            }
             
             out.println("</body>");
             out.println("</html>");

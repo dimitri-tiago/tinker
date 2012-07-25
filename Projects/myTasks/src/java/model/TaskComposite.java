@@ -53,12 +53,7 @@ public class TaskComposite extends TaskComponent
 
     @Override
     public Iterator createIterator() 
-    {
-       if (iterator == null)
-       {
-           iterator = new TaskCompositeIterator(taskComponents.iterator());
-       }
-       
-       return iterator;
+    { 
+       return new TaskCompositeIterator(taskComponents.iterator());
     }
 }
