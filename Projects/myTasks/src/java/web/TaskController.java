@@ -69,10 +69,10 @@ public class TaskController extends HttpServlet
         {
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>{myTasks}</title>");            
+            out.println("<title>Dimitri Tiago {myTasks}</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>{myTasks}</h1>");
+            out.println("<h1>Dimtri Tiago{myTasks}</h1>");
             
             Iterator allTasks = taskManager.getTasks();
             while (allTasks.hasNext())

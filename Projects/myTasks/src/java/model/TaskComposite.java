@@ -12,14 +12,12 @@ import java.util.Iterator;
  */
 public class TaskComposite extends TaskComponent
 {
-  private Iterator iterator;
   private ArrayList<TaskComponent> taskComponents;
   
     public TaskComposite()
     {
         super();
         taskComponents = new ArrayList<TaskComponent>();
-        iterator = null;
     }
   
     @Override

@@ -48,7 +48,7 @@ public class TaskCompositeIterator implements Iterator
         {
             Iterator iterator = (Iterator) stack.peek();
             TaskComponent component = (TaskComponent) iterator.next();
-            if (component instanceof TaskComposite)
+            if (component instanceof TaskComposite && !(iterator instanceof TaskCompositeIterator))
             {
                 stack.push(component.createIterator());
             }
