@@ -7,6 +7,7 @@ package web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -62,31 +63,8 @@ public class TaskController extends HttpServlet
             taskManager.addTask(taskName, taskDescription, taskList);
         }
 
-        // prepare response object
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try 
-        {
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Dimitri Tiago {myTasks}</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Dimtri Tiago{myTasks}</h1>");
-            
-            Iterator allTasks = taskManager.getTasks();
-            while (allTasks.hasNext())
-            {
-                out.println("<p>" + allTasks.next() + "</p>");
-            }
-            
-            out.println("</body>");
-            out.println("</html>");
-        } 
-        finally 
-        {            
-            out.close();
-        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

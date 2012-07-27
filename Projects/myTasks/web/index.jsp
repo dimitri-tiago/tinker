@@ -4,6 +4,8 @@
     Author     : dimitri.tiago
 --%>
 
+<%@page import="model.TaskManager"%>
+<%@page import="java.util.Iterator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +15,16 @@
     </head>
     <body>
         <h1>Dimitri Tiago {myTasks}</h1>
+        
+        <%  
+            TaskManager taskManager = (TaskManager) getServletContext().getAttribute("taskManager");
+        
+            Iterator allTasks = taskManager.getTasks();
+            while (allTasks.hasNext())
+            {
+                out.println("<p>" + allTasks.next() + "</p>");
+            }
+        %>
         
         <form id = "addTaskList" method = "GET" action = "TaskController">
             <h3>Add list:</h3>

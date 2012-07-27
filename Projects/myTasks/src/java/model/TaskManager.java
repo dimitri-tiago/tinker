@@ -30,20 +30,11 @@ public class TaskManager
         generalTasks.setDescription("General tasks.");
         tasks.add(generalTasks);
     }
-    
+        
     /**
-     * This method adds a new task composite (i.e. list of tasks) 
-     * to the "master" task composite (i.e. top level of the composite tree).
-     * @param name task list name
-     * @param description task list description
-     */
-    public void addList(String name, String description)
-    {
-        addList(name, description, "master");
-    }
-    
-    /**
-     * This method adds a child task list to a parent task list
+     * This method adds a child task list to a parent task list, if the 
+     * parent task list is not defined the new list is added to the master 
+     * task list.
      * @param name new task list name
      * @param description new task list description
      * @param list parent task list name
@@ -124,6 +115,8 @@ public class TaskManager
         return null;
     }
     
+    // TODO: consider how lists and tasks will be presented. Then, refactor
+    // how we get this information.
     public Iterator getTasks()
     {
         ArrayList<String> allTasks = new ArrayList<String>();
