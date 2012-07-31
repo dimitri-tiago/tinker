@@ -15,6 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.TaskManager;
 
+//TODO: remove model from controller. add java bean to request message in 
+//      controller.
+
+//TODO: implement navigation (i.e. automatically generate links to sub tasks.
+//TODO: implement bread-crumb pattren for task navigation.
+
 /**
  *
  * @author dimitri.tiago
