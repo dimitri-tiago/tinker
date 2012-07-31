@@ -23,12 +23,6 @@ public class TaskManager
         tasks = new TaskComposite();
         tasks.setName("master");
         tasks.setDescription("master task list.");
-        
-        // add default list to master task list
-        TaskComposite generalTasks = new TaskComposite();
-        generalTasks.setName("General");
-        generalTasks.setDescription("General tasks.");
-        tasks.add(generalTasks);
     }
         
     /**
@@ -61,7 +55,7 @@ public class TaskManager
         taskItem.setName(name);
         taskItem.setDescription(description);
         
-        addTaskComponent(taskItem, (list.equals("")) ? "General" : list);
+        addTaskComponent(taskItem, (list.equals("")) ? "master" : list);
     }
     
     private void addTaskComponent(TaskComponent taskComponent, String list)
@@ -114,25 +108,6 @@ public class TaskManager
         // task list not found
         return null;
     }
-    
-    /*
-    // TODO: consider how lists and tasks will be presented. Then, refactor
-    // how we get this information.
-    public Iterator getTasks()
-    {
-        ArrayList<String> allTasks = new ArrayList<String>();
-    
-        Iterator taskIterator = tasks.createIterator();
-        while (taskIterator.hasNext())
-        {
-            TaskComponent taskComponent = (TaskComponent) taskIterator.next();
-            allTasks.add(taskComponent.getName());
-        }
-        
-        return allTasks.iterator();
-    }
-    * 
-    */
     
     /**
      * This method returns tasks for a patent list. If no list is specified, it
