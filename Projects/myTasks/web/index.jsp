@@ -17,17 +17,28 @@
         <a href="TaskController?submit=Get%20Tasks&amp;taskList=">
             <h1>Dimitri Tiago {myTasks}</h1>
         </a>
-        
-        <a href="TaskController?submit=Get%20Tasks&amp;taskList=Personal">GetListTest</a>
+       
         <%  
             TaskManager taskManager = (TaskManager) getServletContext().getAttribute("taskManager");
             if (taskManager != null)
             {
-                String taskList   = (String) request.getAttribute("taskList");
-                Iterator allTasks = taskManager.getTasks(taskList);
-                while (allTasks.hasNext())
+                String taskList           = (String) request.getAttribute("taskList");
+
+                Iterator taskListIterator = taskManager.getTaskLists(taskList);
+                while (taskListIterator.hasNext())
                 {
-                    out.println("<p>" + allTasks.next() + "</p>");
+                   String taskListIteratorItem = (String) taskListIterator.next(); 
+                   out.println("<p>" 
+                           + "<a href=\"TaskController?submit=Get%20Tasks&amp;taskList=" + taskListIteratorItem + "\">"
+                           + taskListIteratorItem
+                           + "</a>"
+                           + "</p>");
+                }  
+
+                Iterator taskItemsIterator = taskManager.getTasksItems(taskList);
+                while (taskItemsIterator.hasNext())
+                {
+                   out.println("<p>" + taskItemsIterator.next() + "</p>");
                 }
             }
         %>

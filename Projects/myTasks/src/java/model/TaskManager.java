@@ -156,4 +156,110 @@ public class TaskManager
             }
         }
     }
+    
+    /**
+     * This method returns tasks lists for a patent list. If no list is specified, it
+     * returns the tasks lists at the highest level. If a list is 
+     * specified but not found in the composite tree structure, it returns null.
+     * @param parent parent list name.
+     * @return <code>Iterator</code> for child task lists.
+     */
+    public Iterator getTaskLists(String parent)
+    {
+        // child tasks iterator
+        ArrayList<String> taskLists = new ArrayList<String>();
+        
+        if ( (parent == null) || (parent.equals("")) )
+        {
+            // no parent specified.. return parents at highest level
+            Iterator taskIterator = tasks.getChildren();
+            while (taskIterator.hasNext())
+            {
+                TaskComponent tc = (TaskComponent) taskIterator.next();
+                if (tc instanceof TaskComposite)
+                {
+                    taskLists.add(tc.getName());
+                }
+            }
+            
+            return taskLists.iterator();
+        }
+        else
+        {
+            TaskComposite parentComposite = getList(parent);
+            if (parentComposite != null)
+            {
+                // parent list found, return its children
+                Iterator taskIterator = parentComposite.getChildren();
+                while (taskIterator.hasNext())
+                {
+                    TaskComponent tc = (TaskComponent) taskIterator.next();
+                    if (tc instanceof TaskComposite)
+                    {
+                        taskLists.add(tc.getName());
+                    }
+                }
+                
+                return taskLists.iterator();
+            }
+            else
+            {
+                // parent list not found, return null.
+                return null;
+            }
+        }
+    }
+    
+    /**
+     * This method returns tasks items for a patent list. If no list is specified, it
+     * returns the tasks items at the highest level. If a list is 
+     * specified but not found in the composite tree structure, it returns null.
+     * @param parent parent list name.
+     * @return <code>Iterator</code> for child task lists.
+     */
+    public Iterator getTasksItems(String parent)
+    {
+        // child tasks iterator
+        ArrayList<String> taskItems = new ArrayList<String>();
+        
+        if ( (parent == null) || (parent.equals("")) )
+        {
+            // no parent specified.. return parents at highest level
+            Iterator taskIterator = tasks.getChildren();
+            while (taskIterator.hasNext())
+            {
+                TaskComponent tc = (TaskComponent) taskIterator.next();
+                if (tc instanceof TaskItem)
+                {
+                    taskItems.add(tc.getName());
+                }
+            }
+            
+            return taskItems.iterator();
+        }
+        else
+        {
+            TaskComposite parentComposite = getList(parent);
+            if (parentComposite != null)
+            {
+                // parent list found, return its children
+                Iterator taskIterator = parentComposite.getChildren();
+                while (taskIterator.hasNext())
+                {
+                    TaskComponent tc = (TaskComponent) taskIterator.next();
+                    if (tc instanceof TaskItem)
+                    {
+                        taskItems.add(tc.getName());
+                    }
+                }
+                
+                return taskItems.iterator();
+            }
+            else
+            {
+                // parent list not found, return null.
+                return null;
+            }
+        }
+    }
 }
