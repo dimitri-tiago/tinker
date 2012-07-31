@@ -26,7 +26,7 @@ public class TaskManager
         
         // add default list to master task list
         TaskComposite generalTasks = new TaskComposite();
-        generalTasks.setName("general");
+        generalTasks.setName("General");
         generalTasks.setDescription("General tasks.");
         tasks.add(generalTasks);
     }
@@ -61,7 +61,7 @@ public class TaskManager
         taskItem.setName(name);
         taskItem.setDescription(description);
         
-        addTaskComponent(taskItem, (list.equals("")) ? "general" : list);
+        addTaskComponent(taskItem, (list.equals("")) ? "General" : list);
     }
     
     private void addTaskComponent(TaskComponent taskComponent, String list)
@@ -115,6 +115,7 @@ public class TaskManager
         return null;
     }
     
+    /*
     // TODO: consider how lists and tasks will be presented. Then, refactor
     // how we get this information.
     public Iterator getTasks()
@@ -129,5 +130,54 @@ public class TaskManager
         }
         
         return allTasks.iterator();
+    }
+    * 
+    */
+    
+    /**
+     * This method returns tasks for a patent list. If no list is specified, it
+     * returns the tasks at the highest level (i.e. master tasks). If a list is 
+     * specified but not found in the composite tree structure, it returns null.
+     * @param parent parent list name.
+     * @return <code>Iterator</code> for child tasks.
+     */
+    public Iterator getTasks(String parent)
+    {
+        // child tasks iterator
+        ArrayList<String> childTasks = new ArrayList<String>();
+        
+        if ( (parent == null) || (parent.equals("")) )
+        {
+            // no parent specified.. return parents at highest level
+            Iterator taskIterator = tasks.getChildren();
+            while (taskIterator.hasNext())
+            {
+                TaskComponent tc = (TaskComponent) taskIterator.next();
+                childTasks.add(tc.getName());
+            }
+            
+            return childTasks.iterator();
+        }
+        else
+        {
+            TaskComposite parentComposite = getList(parent);
+            if (parentComposite != null)
+            {
+                // parent list found, return its children
+                Iterator taskIterator = parentComposite.getChildren();
+                while (taskIterator.hasNext())
+                {
+                    TaskComponent tc = (TaskComponent) taskIterator.next();
+                    childTasks.add(tc.getName());
+                }
+                
+                return childTasks.iterator();
+            }
+            else
+            {
+                // parent list not found, return null.
+                return null;
+            }
+        }
     }
 }

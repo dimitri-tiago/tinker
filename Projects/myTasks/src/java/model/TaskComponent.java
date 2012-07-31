@@ -35,6 +35,11 @@ public abstract class TaskComponent
         throw new UnsupportedOperationException();
     }    
     
+    public Iterator getChildren()
+    {
+        throw new UnsupportedOperationException();
+    }
+    
     public void setName(String name)
     {
         this.name = name;

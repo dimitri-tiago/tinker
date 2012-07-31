@@ -51,6 +51,8 @@ public class TaskController extends HttpServlet
             String listDescription  = (String) request.getParameter("listDescription");
             String parentList       = (String) request.getParameter("parentList");
             
+            request.setAttribute("taskList", parentList);
+            
             taskManager.addList(listName, listDescription, parentList);
         }
         else if (operation.equals("Add Task"))
@@ -59,6 +61,8 @@ public class TaskController extends HttpServlet
             String taskName         = (String) request.getParameter("taskName");
             String taskDescription  = (String) request.getParameter("taskDescription");
             String taskList         = (String) request.getParameter("taskList");
+            
+            request.setAttribute("taskList", taskList);
             
             taskManager.addTask(taskName, taskDescription, taskList);
         }

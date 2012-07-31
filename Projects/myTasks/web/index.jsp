@@ -18,11 +18,14 @@
         
         <%  
             TaskManager taskManager = (TaskManager) getServletContext().getAttribute("taskManager");
-        
-            Iterator allTasks = taskManager.getTasks();
-            while (allTasks.hasNext())
+            if (taskManager != null)
             {
-                out.println("<p>" + allTasks.next() + "</p>");
+                String taskList   = (String) request.getAttribute("taskList");
+                Iterator allTasks = taskManager.getTasks(taskList);
+                while (allTasks.hasNext())
+                {
+                    out.println("<p>" + allTasks.next() + "</p>");
+                }
             }
         %>
         

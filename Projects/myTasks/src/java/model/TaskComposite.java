@@ -37,6 +37,12 @@ public class TaskComposite extends TaskComponent
     {   
         return taskComponents.get(index);
     }
+
+    @Override
+    public Iterator getChildren()
+    {
+        return taskComponents.iterator();
+    }
     
     @Override
     public void print()
