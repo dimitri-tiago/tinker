@@ -14,7 +14,9 @@
         <title>Dimitri Tiago {myTasks}</title>
     </head>
     <body>
-        <h1>Dimitri Tiago {myTasks}</h1>
+        <a href="TaskController?submit=Get%20Tasks&amp;taskList=">
+            <h1>Dimitri Tiago {myTasks}</h1>
+        </a>
         
         <a href="TaskController?submit=Get%20Tasks&amp;taskList=Personal">GetListTest</a>
         <%  
