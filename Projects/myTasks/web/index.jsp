@@ -16,6 +16,7 @@
     <body>
         <h1>Dimitri Tiago {myTasks}</h1>
         
+        <a href="TaskController?submit=Get%20Tasks&amp;taskList=Personal">GetListTest</a>
         <%  
             TaskManager taskManager = (TaskManager) getServletContext().getAttribute("taskManager");
             if (taskManager != null)

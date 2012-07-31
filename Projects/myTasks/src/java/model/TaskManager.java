@@ -9,6 +9,7 @@ import java.util.Iterator;
 
 //TODO: need to consider duplicate child list names policy (or use ids?)
 //TODO: need to consider duplicate task item names policy (or use ids?)
+//TODO: handle case when list added does not exist
 
 /**
  * @author dimitri.tiago

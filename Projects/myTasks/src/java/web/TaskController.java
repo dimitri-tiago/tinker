@@ -66,6 +66,12 @@ public class TaskController extends HttpServlet
             
             taskManager.addTask(taskName, taskDescription, taskList);
         }
+        else if (operation.equals("Get Tasks"))
+        {
+            String taskList         = (String) request.getParameter("taskList");
+            
+            request.setAttribute("taskList", taskList);
+        }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
