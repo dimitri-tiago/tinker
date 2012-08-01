@@ -11,25 +11,36 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Dimitri Tiago {myTasks}</title>
+        <title>Dimitri Tiago : {myTasks}</title>
     </head>
     <body>
-        <a href="TaskController?submit=Get%20Tasks&amp;taskList=">
-            <h1>Dimitri Tiago {myTasks}</h1>
+        <a href="TaskController?submit=Get%20Tasks&amp;task-list=">
+            <h1>Dimitri Tiago : {myTasks}</h1>
         </a>
-       
+        
+        <form id = "addTask" method = "GET" action = "TaskController">
+            <p>
+                <input type = "text" name = "task"  value = "" />
+                <input type = "submit" name = "submit"  value = "Add Task" />
+                <input type = "submit" name = "submit"  value = "Add List" />
+                <input type = "hidden" name = "task-list" value = "${param['task-list']}" />
+            </p>
+        </form> 
+        
         <%  
             TaskManager taskManager = (TaskManager) getServletContext().getAttribute("taskManager");
             if (taskManager != null)
             {
-                String taskList           = (String) request.getAttribute("taskList");
+                String taskList = (String) request.getAttribute("task-list");
 
+                out.println("<h1>" + taskList + "</h1>");
+                
                 Iterator taskListIterator = taskManager.getTaskLists(taskList);
                 while (taskListIterator.hasNext())
                 {
                    String taskListIteratorItem = (String) taskListIterator.next(); 
                    out.println("<p>" 
-                           + "<a href=\"TaskController?submit=Get%20Tasks&amp;taskList=" + taskListIteratorItem + "\">"
+                           + "<a href=\"TaskController?submit=Get%20Tasks&amp;task-list=" + taskListIteratorItem + "\">"
                            + taskListIteratorItem
                            + "</a>"
                            + "</p>");
@@ -41,46 +52,6 @@
                    out.println("<p>" + taskItemsIterator.next() + "</p>");
                 }
             }
-        %>
-        
-        <form id = "addTaskList" method = "GET" action = "TaskController">
-            <h3>Add list:</h3>
-            
-            <p>
-                <label id = "listNameLabel" for="listName">List name: </label>
-                <input type = "text" id = "listName" name = "listName"  value = "" />
-            </p>
-            <p>
-                <label id = "listDescriptionLabel" for="listDescription">Description: </label>
-                <textarea id="listDescription" name="listDescription" rows="3" cols="50" ></textarea>
-            </p>
-            <p>
-                <label id = "parentListLabel" for="parentList">Parent list: </label>
-                <input type = "text" id = "parentList" name = "parentList"  value = "" />
-            </p>
-            <p>
-                <input type = "submit" id = "submit" name = "submit"  value = "Add List" />
-            </p>
-        </form>
-        
-        <form id = "addTask" method = "GET" action = "TaskController">
-            <h3>Add task:</h3>
-            
-            <p>
-                <label id = "taskNameLabel" for="taskName">Task name: </label>
-                <input type = "text" id = "taskName" name = "taskName"  value = "" />
-            </p>
-            <p>
-                <label id = "taskDescriptionLabel" for="taskDescription">Description: </label>
-                <textarea id="taskDescription" name="taskDescription" rows="3" cols="50" ></textarea>
-            </p>
-            <p>
-                <label id = "taskListLabel" for="taskList">Task list: </label>
-                <input type = "text" id = "taskList" name = "taskList"  value = "" />
-            </p>
-            <p>
-                <input type = "submit" id = "submit" name = "submit"  value = "Add Task" />
-            </p>
-        </form>
+        %>      
     </body>
 </html>

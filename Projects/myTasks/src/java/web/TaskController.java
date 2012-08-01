@@ -19,6 +19,7 @@ import model.TaskManager;
 //      controller.
 
 //TODO: implement bread-crumb pattren for task navigation.
+//TODO: restrict list selection on view to lists at the current level.
 
 /**
  *
@@ -52,30 +53,28 @@ public class TaskController extends HttpServlet
         if (operation.equals("Add List"))
         {
             // add task list to master list
-            String listName         = (String) request.getParameter("listName");
-            String listDescription  = (String) request.getParameter("listDescription");
-            String parentList       = (String) request.getParameter("parentList");
+            String listName         = (String) request.getParameter("task");
+            String parentList       = (String) request.getParameter("task-list");
             
-            request.setAttribute("taskList", parentList);
+            request.setAttribute("task-list", parentList);
             
-            taskManager.addList(listName, listDescription, parentList);
+            taskManager.addList(listName, parentList);
         }
         else if (operation.equals("Add Task"))
         {
             // add task to list
-            String taskName         = (String) request.getParameter("taskName");
-            String taskDescription  = (String) request.getParameter("taskDescription");
-            String taskList         = (String) request.getParameter("taskList");
+            String taskName         = (String) request.getParameter("task");
+            String taskList         = (String) request.getParameter("task-list");
             
-            request.setAttribute("taskList", taskList);
+            request.setAttribute("task-list", taskList);
             
-            taskManager.addTask(taskName, taskDescription, taskList);
+            taskManager.addTask(taskName, taskList);
         }
         else if (operation.equals("Get Tasks"))
         {
-            String taskList         = (String) request.getParameter("taskList");
+            String taskList         = (String) request.getParameter("task-list");
             
-            request.setAttribute("taskList", taskList);
+            request.setAttribute("task-list", taskList);
         }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");

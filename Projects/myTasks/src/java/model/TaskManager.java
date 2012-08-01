@@ -31,14 +31,12 @@ public class TaskManager
      * parent task list is not defined the new list is added to the master 
      * task list.
      * @param name new task list name
-     * @param description new task list description
      * @param list parent task list name
      */
-    public void addList(String name, String description, String parentList)
+    public void addList(String name, String parentList)
     {
         TaskComposite taskList = new TaskComposite();
         taskList.setName(name);
-        taskList.setDescription(description);
  
         addTaskComponent(taskList, (parentList.equals("")) ? "master" : parentList);
     }
@@ -47,14 +45,12 @@ public class TaskManager
      * This method adds a task to a list. If the list name is not passed the 
      * task is added to the general list.
      * @param name new task name
-     * @param description new task description
      * @param list task list name
      */
-    public void addTask(String name, String description, String list)
+    public void addTask(String name, String list)
     {
         TaskItem taskItem = new TaskItem();
         taskItem.setName(name);
-        taskItem.setDescription(description);
         
         addTaskComponent(taskItem, (list.equals("")) ? "master" : list);
     }
