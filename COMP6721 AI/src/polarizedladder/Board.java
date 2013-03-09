@@ -126,6 +126,11 @@ public class Board {
 		}
 	}
 	
+	public String[][] getState()
+	{
+		return board;
+	}
+	
 	public static void main(String[] args) {
 		
 		Board myBoard = new Board();
