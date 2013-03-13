@@ -61,9 +61,9 @@ public class PLGame {
 				
 				Point playerMove = doPlayerTurn(players[0]);
 				
-				if ( players[0].setDisc(playerMove.y, playerMove.x) == false) 
+				while ( players[0].setDisc(playerMove.y, playerMove.x) == false) 
 				{
-					doPlayerTurn(players[0]);
+					playerMove = doPlayerTurn(players[0]);
 				}
 				
 				if ( detectWin.detectLadder(players[0].getPlayerToken(), 
@@ -80,9 +80,9 @@ public class PLGame {
 			
 				Point playerMove = doPlayerTurn(players[1]);
 				
-				if ( players[1].setDisc(playerMove.y, playerMove.x) == false) 
+				while ( players[1].setDisc(playerMove.y, playerMove.x) == false) 
 				{
-					doPlayerTurn(players[1]);
+					playerMove = doPlayerTurn(players[1]);
 				}
 				
 				if ( detectWin.detectLadder(players[1].getPlayerToken(), 
