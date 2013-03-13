@@ -80,23 +80,29 @@ public class Board {
 	}
 	
 	private boolean isLegalPosition(int i, int j) {
-		
-		if ( board[i][j].equalsIgnoreCase(" ") ) {
+	
+		try
+		{
+			if ( board[i][j].equalsIgnoreCase(" ") ) {
+				
+				// illegal position
+				return false;
+				
+			} else if ( !board[i][j].equalsIgnoreCase("_") ) {
+				
+				// illegal position
+				return false;
 			
-			// illegal position
-			return false;
-			
-		} else if ( !board[i][j].equalsIgnoreCase("_") ) {
-			
-			// illegal position
-			return false;
-		
-		} else {
-			
-			// legal position
-			return true;
+			} else {
+				
+				// legal position
+				return true;
+			}
 		}
-		
+		catch (ArrayIndexOutOfBoundsException aiob)
+		{
+			return false;
+		}
 	}
 	
 	public boolean setPosition(int i, int j, String mark) {

@@ -107,16 +107,27 @@ public class PLGame {
 		// command line input scanner
 		Scanner input 		= new Scanner(System.in);	
 		
-		String playerMove 	= input.nextLine();
-		
-		// parse player move
-		String rowTemp 	= playerMove.substring(0,1);	
-		int row 		= Integer.parseInt(rowTemp);
-		char [] colTemp = playerMove.toUpperCase().toCharArray();
-		int col 		= Character.getNumericValue( colTemp[1] ) - 9;
-
-		Point discCoordinates = new Point(col, row);	
-		return discCoordinates;
+		try
+		{
+			String playerMove 	= input.nextLine();
+			
+			// parse player move
+			String rowTemp 	= playerMove.substring(0,1);	
+			int row 		= Integer.parseInt(rowTemp);
+			char [] colTemp = playerMove.toUpperCase().toCharArray();
+			int col 		= Character.getNumericValue( colTemp[1] ) - 9;
+	
+			Point discCoordinates = new Point(col, row);	
+			return discCoordinates;
+		}
+		catch (ArrayIndexOutOfBoundsException aiob)
+		{
+			return doPlayerTurn(player);
+		}
+		catch(NumberFormatException nf)
+		{
+			return doPlayerTurn(player);
+		}
 	}
 	
 	private static int displayMainMenu() {
