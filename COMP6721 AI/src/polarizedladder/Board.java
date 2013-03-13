@@ -131,6 +131,11 @@ public class Board {
 		return board;
 	}
 	
+	public void setState(String[][] board)
+	{
+		this.board = board;
+	}
+	
 	public static void main(String[] args) {
 		
 		Board myBoard = new Board();

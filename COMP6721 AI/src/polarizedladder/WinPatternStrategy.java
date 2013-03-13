@@ -9,23 +9,9 @@ import java.awt.Point;
 
 public class WinPatternStrategy 
 {
-	private String[][] board;
-	
-	/*
-	private Point rightWinPatterns[][] = { 			
-			{new Point(0,0), new Point(1,0), new Point (1,1), new Point (2,1) , new Point (2,2)},			//  right ladder patterns
-			{new Point(0,0), new Point(-1,0), new Point (0,1), new Point (1,1) , new Point (1,2)},
-			{new Point(0,0), new Point(1,0), new Point (1,1), new Point (0,-1) , new Point (-1,-1)},
-			{new Point(0,0), new Point(0,1), new Point (-1,0), new Point (-1,-1) , new Point (-2,-1)},
-			{new Point(0,0), new Point(0,-1), new Point (-1,-1), new Point (-1,-2) , new Point (-2,-2)},	//	left ladder patterns
-			{new Point(0,0), new Point(-1,0), new Point (-1,1), new Point (-2,1) , new Point (-2,2)},
-			{new Point(0,0), new Point(1,0), new Point (0,1), new Point (-1,1) , new Point (-1,2)},
-			{new Point(0,0), new Point(-1,0), new Point (-1,1), new Point (0,-1) , new Point (1,-1)},
-			{new Point(0,0), new Point(0,1), new Point (1,0), new Point (1,-1) , new Point (2,-1)},
-			{new Point(0,0), new Point(0,-1), new Point (1,-1), new Point (1,-2) , new Point (2,-2)},
-	};
-	*/
-	
+	private Board board;
+	private String[][] boardState;
+		
 	private Point winPatterns[][] = { 			
 			{new Point(0,0), new Point(1,0), new Point (1,1), new Point (2,1) , new Point (2,2)},			//  right ladder patterns
 			{new Point(-1,0), new Point(0,0), new Point (0,1), new Point (1,1) , new Point (1,2)},
@@ -45,15 +31,21 @@ public class WinPatternStrategy
 	private Point rightSidePolarity[] = { new Point(13,1), new Point(12,2), new Point(11,3), 
 			new Point(10,4), new Point(9,5), new Point(8,6), new Point(7,7)};
 	
-	public WinPatternStrategy(String[][] board) 
+	public WinPatternStrategy(Board board) 
 	{
 		this.board = board;
 	}
 	
-	//TODO: check for win block positions.
+	public WinPatternStrategy(String[][] board) 
+	{
+		this.board = new Board();
+		this.board.setState(board);
+	}
+	
 	public boolean detectLadder(String playerToken, String opposingPlayerToken, Point currPoint)
 	{
 		String token = " ";
+		boardState 	 = board.getState();
 		
 		for (int i = 0; i < winPatterns.length; i++)
 		{
@@ -66,7 +58,7 @@ public class WinPatternStrategy
 				
 				try
 				{
-					token = board[yPos][xPos];
+					token = boardState[yPos][xPos];
 				}
 				catch (Exception e)
 				{
@@ -152,14 +144,16 @@ public class WinPatternStrategy
 	
 	public boolean isWinBlocked(Point[] ladder, String ladderDirection, String opposingPlayerToken)
 	{
+		String[][] boardState = board.getState();
+		
 		if ( ladderDirection.equalsIgnoreCase("LEFT") )
 		{
 			Point p1 = new Point(ladder[0].x - 2, ladder[0].y);	// block point 1
 			Point p2 = new Point(ladder[0].x, ladder[0].y + 2);	// block point 2
 			
 			// if board points p1 and p2 do not contain player token...
-			if ( (board[p1.y][p1.x].equalsIgnoreCase(opposingPlayerToken)) &&
-					(board[p2.y][p2.x].equalsIgnoreCase(opposingPlayerToken)))
+			if ( (boardState[p1.y][p1.x].equalsIgnoreCase(opposingPlayerToken)) &&
+					(boardState[p2.y][p2.x].equalsIgnoreCase(opposingPlayerToken)))
 			{
 				// win blocked
 				System.out.println("Left Win Blocked!");
@@ -172,8 +166,8 @@ public class WinPatternStrategy
 			Point p2 = new Point(ladder[0].x, ladder[0].y + 2);	// block point 2
 			
 			// if board points p1 and p2 do not contain player token...
-			if ( (board[p1.y][p1.x].equalsIgnoreCase(opposingPlayerToken)) &&
-					(board[p2.y][p2.x].equalsIgnoreCase(opposingPlayerToken)))
+			if ( (boardState[p1.y][p1.x].equalsIgnoreCase(opposingPlayerToken)) &&
+					(boardState[p2.y][p2.x].equalsIgnoreCase(opposingPlayerToken)))
 			{
 				// win blocked
 				System.out.println("Right Win Blocked!");
