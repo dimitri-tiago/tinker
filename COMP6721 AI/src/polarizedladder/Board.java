@@ -142,7 +142,7 @@ public class Board {
 		this.board = board;
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		
 		Board myBoard = new Board();
 		myBoard.printBoard();
@@ -150,5 +150,5 @@ public class Board {
 		System.out.println(myBoard.setPosition(5, 5, "x"));
 		myBoard.printBoard();
 		
-	}
+	}*/
 }

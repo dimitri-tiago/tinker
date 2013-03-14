@@ -178,43 +178,44 @@ public class WinPatternStrategy
 		return false;
 	}
 	
+	/*
 	public static void main(String[] args) 
 	{
 		Board myBoard = new Board();
 		
-		/* right ladder test
+		// right ladder test
 		myBoard.setPosition(1, 4, "*");
 		myBoard.setPosition(1, 5, "*");
 		myBoard.setPosition(2, 5, "*");
 		myBoard.setPosition(2, 6, "*");
 		myBoard.setPosition(3, 6, "*");
-		*/
 		
-		/* left ladder test
+		
+		// left ladder test
 		myBoard.setPosition(1, 5, "*");
 		myBoard.setPosition(1, 4, "*");
 		myBoard.setPosition(2, 4, "*");
 		myBoard.setPosition(2, 3, "*");
 		myBoard.setPosition(3, 3, "*");
-		*/
 		
-		/* polarity test right ladder
+		
+		// polarity test right ladder
 		myBoard.setPosition(2, 2, "*");
 		myBoard.setPosition(2, 3, "*");
 		myBoard.setPosition(3, 3, "*");
 		myBoard.setPosition(3, 4, "*");
 		myBoard.setPosition(4, 4, "*");
-		*/
 		
-		/* polarity test left ladder
+		
+		// polarity test left ladder
 		myBoard.setPosition(7, 7, "*");
 		myBoard.setPosition(6, 7, "*");
 		myBoard.setPosition(6, 8, "*");
 		myBoard.setPosition(5, 8, "*");
 		myBoard.setPosition(5, 9, "*");
-		*/
 		
-		/* win left ladder blocked
+		
+		// win left ladder blocked
 		myBoard.setPosition(2, 7, "*");
 		myBoard.setPosition(2, 6, "*");
 		myBoard.setPosition(3, 6, "*");
@@ -222,7 +223,6 @@ public class WinPatternStrategy
 		myBoard.setPosition(4, 5, "*");
 		myBoard.setPosition(2, 5, "o");
 		myBoard.setPosition(4, 7, "o");
-		*/
 		
 		// win right ladder blocked
 		myBoard.setPosition(3, 7, "*");
@@ -239,6 +239,5 @@ public class WinPatternStrategy
 		boolean win = detectWin.detectLadder("*", "o", new Point(8, 4) );
 		
 		System.out.printf("Win detected? %b\n", win);
-	}
-
+	}*/
 }
