@@ -27,7 +27,8 @@ public class PLGame {
 			
 			Player [] players = new Player[2];	// instantiate human players
 			players[0] = new Player("Player One", 'o', 22, board);
-			players[1] = new Player("Player Two", Character.toChars(8226)[0], 22, board);
+			//players[1] = new Player("Player Two", Character.toChars(8226)[0], 22, board);
+			players[1] = new Player("Player Two", '*', 22, board);
 			
 			startGame(board, players, detectWin);
 			
