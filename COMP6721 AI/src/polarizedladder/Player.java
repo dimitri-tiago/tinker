@@ -3,7 +3,7 @@
  * Polarized Ladder Game
  * March 2, 2013 
  */
-package polarizedladder;
+//package polarizedladder;
 
 import java.util.Scanner;
 
