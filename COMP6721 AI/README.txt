@@ -1,4 +1,4 @@
-To run the game just double click on the .jar file and the game will lauch.
+To run the game just double click on the .jar file and the game will launch.
 
 
 To compile and run in Mac OS X and Linux from a terminal (ignore the $ it is there to show bash shell)
